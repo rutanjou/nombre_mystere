@@ -9,17 +9,19 @@ function main(){
  	console.log(aleatoire);
 
  	function demarrerPartie(){
- 		tenta = 3;
+ 		tenta = 4;
  		aleatoire = parseInt(Math.random()*(20-10)+10);
- 
+        console.log(aleatoire);
 
  	};
  	function partieGagnee(){
+ 		$("#ten").text(--tenta);
         return demarrerPartie();
  	};
     function partiePerdue(){
-    	if(tenta === 0){
-    		alert("perdu");
+    	$("#ten").text(--tenta);
+    	if(tenta <= 0){
+    		alert("Fin partie");
     		return demarrerPartie();
     	};
     };
@@ -40,12 +42,15 @@ function main(){
 
     	}else if(contenu > aleatoire){
     		alert("Perdu,votre nombre est trop grand");
-    		$("#ten").text(--tenta);
+    	
+    		return partiePerdue();
     	}else if(contenu < aleatoire){
     		alert("Perdu, votre nombre est trop petit");
-    		$("#ten").text(--tenta);
-    	}else{
+    	
+    		return partiePerdue();
+    	}else{ 
     		alert("Perdu");
+    		return partiePerdue();
     	};
     	};
    
