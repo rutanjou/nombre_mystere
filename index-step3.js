@@ -1,8 +1,30 @@
 $(document).ready(main);
-
+ 
 // Fonction principale
 function main(){
-     
+    var tenta = 3;
+    alert("vous avez "+ tenta +" tentatives");
+ 	
+ 	var aleatoire = parseInt(Math.random()*(20-10)+10);
+ 	console.log(aleatoire);
+
+ 	function demarrerPartie(){
+ 		tenta = 3;
+ 		aleatoire = parseInt(Math.random()*(20-10)+10);
+ 
+
+ 	};
+ 	function partieGagnee(){
+        return demarrerPartie();
+ 	};
+    function partiePerdue(){
+    	if(tenta === 0){
+    		alert("perdu");
+    		return demarrerPartie();
+    	};
+    };
+
+
 	// Créer et initialiser une variable 'globale' qui 
 	// va stocker le nombre de tentatives restantes.
 
@@ -10,22 +32,20 @@ function main(){
 	// va stocker le nombre "aléatoire" mystère.
 	function clickValider(){
     	var contenu = $("input").val();
-    	var mystere = 5;
-    	var reinitia = $(".form.reset").on();
-    	
-    	
-    	if(contenu == mystere){
+    	console.log(contenu);
+    	    	
+    	if(contenu === aleatoire){
     		alert("Gagné");
-    		(function(){
-    		location.reload(reinitia);
-    	});
+    		return demarrerPartie();
 
-    	}else if(contenu > mystere){
+    	}else if(contenu > aleatoire){
     		alert("Perdu,votre nombre est trop grand");
-    	}else if(contenu < mystere){
+    		$("#ten").text(--tenta);
+    	}else if(contenu < aleatoire){
     		alert("Perdu, votre nombre est trop petit");
+    		$("#ten").text(--tenta);
     	}else{
-    		alert("Perdu")
+    		alert("Perdu");
     	};
     	};
    
@@ -35,7 +55,10 @@ function main(){
     	
 
 
-    $("button").click(clickValider);
+    $("button").click(function(){
+    	clickValider();
+    });
+   
 	
 
 
